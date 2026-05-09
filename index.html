@@ -3,109 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Boda</title>
-    <!-- Importando fuentes elegantes de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Mis 15 Años - Thamilee Summy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --celeste: #4db8f0; /* Color celeste extraído de tu imagen */
+            --gris-texto: #555555;
+        }
+        
         body {
-            font-family: 'Lora', serif;
+            font-family: 'Montserrat', sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #faf8f5; /* Tono cálido/crema de boda */
-            color: #4a4a4a;
+            background-color: #ffffff;
+            color: var(--gris-texto);
+            overflow-x: hidden;
         }
-        .hero {
-            padding: 80px 20px;
-            /* Imagen de fondo sutil con una capa blanca semitransparente encima */
-            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') center/cover;
-            border-bottom: 2px solid #e0d5c1;
+
+        /* Clase para las animaciones al hacer scroll */
+        .animar-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4.5em;
-            color: #cda34f; /* Tono dorado elegante */
-            margin: 10px 0;
+        .animar-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        h2 {
-            font-size: 2em;
-            color: #cda34f;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: #666;
-        }
-        
-        /* Contenedor Flexbox para que el contador se adapte a móviles */
-        #contador {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            font-size: 1.5em;
-            margin: 30px 0;
-            flex-wrap: wrap; /* Permite que las cajas bajen de línea si no caben */
-        }
-        .time-box {
-            background: #ffffff;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #e0d5c1;
-            min-width: 70px;
-        }
-        .time-box span {
-            display: block;
-            font-size: 0.5em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #999;
-            margin-top: 5px;
-        }
-        
+
         .seccion {
             padding: 50px 20px;
             max-width: 800px;
             margin: 0 auto;
         }
-        
-        /* Contenedor Responsivo para el Mapa de Google */
-        .mapa-container {
-            position: relative;
-            overflow: hidden;
-            padding-top: 56.25%; /* Proporción 16:9 */
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
-        .mapa-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+
+        .frase-inicial {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-style: italic;
         }
 
-        /* Ajustes específicos para pantallas de celular */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5em;
+            color: var(--celeste);
+            margin: 10px 0;
+            font-weight: normal;
+        }
+
+        .nombres-bloque {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nombres-bloque p { margin: 5px 0; }
+        .etiqueta { font-weight: 600; color: var(--gris-texto); }
+        .nombre-persona { color: var(--gris-texto); }
+
+        .cinta-15 {
+            background-color: var(--celeste);
+            color: white;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3em;
+            padding: 10px 40px;
+            display: inline-block;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .fecha-bloque {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.5em;
+            color: var(--celeste);
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        .numero-dia { font-size: 2.5em; line-height: 1; }
+        .mes-anio { text-align: left; font-size: 0.6em; }
+
+        /* Contador */
+        #contador {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .time-box {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--celeste);
+            min-width: 60px;
+            color: var(--celeste);
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        .time-box span {
+            display: block;
+            font-size: 0.4em;
+            text-transform: uppercase;
+            color: var(--gris-texto);
+            margin-top: 5px;
+        }
+
+        .ubicaciones {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .lugar-titulo { color: var(--celeste); font-weight: bold; font-size: 1.3em; margin-bottom: 10px;}
+
         @media (max-width: 600px) {
-            h1 { font-size: 3.5em; }
-            .hero { padding: 50px 20px; }
-            #contador { font-size: 1.2em; gap: 10px; }
-            .time-box { padding: 10px 15px; min-width: 50px; }
+            h1 { font-size: 3.8em; }
+            .fecha-bloque { flex-direction: column; gap: 5px; }
+            .mes-anio { text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <h1>María & Juan</h1>
-        <p>¡Nos casamos y queremos celebrar este momento contigo!</p>
+    <div class="seccion animar-scroll">
+        <p class="frase-inicial">Hay momentos inolvidables que se atesoran en el corazón para siempre. Por eso quiero compartir este día al lado de todas las personas que forman parte de mi vida.</p>
+        <h1>Thamilee Summy</h1>
     </div>
 
-    <div class="seccion">
-        <h2>Faltan</h2>
+    <div class="seccion animar-scroll">
+        <div class="nombres-bloque">
+            <div>
+                <span class="etiqueta">Mis Padres:</span><br>
+                <span class="nombre-persona">Arturo de Córdova Espinoza<br>Marisa León Espinoza</span>
+            </div>
+            <div>
+                <span class="etiqueta">Mis Padrinos:</span><br>
+                <span class="nombre-persona">Gemma Elena Ventura Cruz e hijo<br>Peter Phol Mendoza Venturo</span>
+            </div>
+        </div>
+        <p style="font-style: italic; margin-top: 30px;">Los invitamos a ser cómplices del momento más especial y feliz para nosotros.</p>
+    </div>
+
+    <div class="seccion animar-scroll">
+        <div class="cinta-15">Mis 15 Años</div>
+        
+        <div class="fecha-bloque">
+            <div>Sábado</div>
+            <div class="numero-dia">23</div>
+            <div class="mes-anio">Mayo<br>2026</div>
+        </div>
+        <p style="font-weight: bold; color: var(--gris-texto);">3:30 P.M.</p>
+
+        <!-- Contador configurado para el 23 de Mayo de 2026 a las 15:30 -->
         <div id="contador">
             <div class="time-box" id="dias">00 <span>Días</span></div>
             <div class="time-box" id="horas">00 <span>Horas</span></div>
@@ -114,18 +169,23 @@
         </div>
     </div>
 
-    <div class="seccion">
-        <h2>Nuestra Ubicación</h2>
-        <p>Te esperamos con mucha emoción en el lugar de la recepción.</p>
-        <div class="mapa-container">
-            <!-- He mantenido exactamente el mismo enlace de tu mapa de Lima -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.815217154331!2d-77.0366657!3d-12.0560731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAzJzIxLjkiUyA3N8KwMDInMTIuMCJX!5e0!3m2!1ses!2spe!4v1633023226784!5m2!1ses!2spe" allowfullscreen="" loading="lazy"></iframe>
+    <div class="seccion animar-scroll">
+        <div class="ubicaciones">
+            <div>
+                <div class="lugar-titulo">MISA</div>
+                <p>Iglesia Santiago Apóstol<br>Carhuamayo</p>
+            </div>
+            <div>
+                <div class="lugar-titulo">RECEPCIÓN</div>
+                <p>Local Recepciones Ralusa Jr. Tarma s/n<br>Carhuamayo</p>
+            </div>
         </div>
     </div>
 
     <script>
-        // Configuración de la fecha (Año, Mes [0=Enero, 11=Diciembre], Día, Hora, Minuto)
-        const fechaEvento = new Date(2026, 11, 31, 20, 0, 0).getTime();
+        /* 1. Lógica del Contador */
+        // Fecha: 2026, Mes 4 (Mayo es el mes 4 porque Enero es 0), Día 23, Hora 15:30
+        const fechaEvento = new Date(2026, 4, 23, 15, 30, 0).getTime();
 
         const actualizarContador = setInterval(function() {
             const ahora = new Date().getTime();
@@ -143,9 +203,21 @@
 
             if (distancia < 0) {
                 clearInterval(actualizarContador);
-                document.getElementById("contador").innerHTML = "<p>¡El gran día ha llegado!</p>";
+                document.getElementById("contador").innerHTML = "<p style='color:var(--celeste); font-weight:bold;'>¡La celebración ha comenzado!</p>";
             }
         }, 1000);
+
+        /* 2. Lógica de las Animaciones al hacer Scroll */
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 }); // Se activa cuando el 10% del elemento es visible
+
+        const elementosOcultos = document.querySelectorAll('.animar-scroll');
+        elementosOcultos.forEach((el) => observador.observe(el));
     </script>
 </body>
 </html>
