@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Invitación Especial</title>
+    <style>
+        /* Estilos básicos para que sea legible, luego podemos mejorarlos */
+        body { font-family: sans-serif; text-align: center; padding: 20px; background-color: #f9f9f9;}
+        #contador { font-size: 2.5em; font-weight: bold; margin: 20px 0; color: #2c3e50; }
+        .mapa-container { margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <h1>¡Estás Invitado!</h1>
+    <p>Acompáñanos a celebrar este momento tan especial.</p>
+
+    <!-- Sección de la Cuenta Regresiva -->
+    <div id="contador">Calculando tiempo...</div>
+
+    <!-- Sección de la Ubicación (Google Maps) -->
+    <div class="mapa-container">
+        <h2>Ubicación</h2>
+        <p>Te esperamos en el lugar del evento.</p>
+        <!-- Iframe de Google Maps (Reemplazarás el src más adelante con tu ubicación) -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.815217154331!2d-77.0366657!3d-12.0560731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAzJzIxLjkiUyA3N8KwMDInMTIuMCJX!5e0!3m2!1ses!2spe!4v1633023226784!5m2!1ses!2spe" width="100%" height="350" style="border:0; max-width: 600px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <script>
+        /* Lógica de la Cuenta Regresiva */
+        // Configura la fecha aquí: Año, Mes (0-11, 0 es Enero), Día, Hora, Minuto
+        // Ejemplo actual: 31 de Diciembre de 2026 a las 20:00 horas
+        const fechaEvento = new Date(2026, 11, 31, 20, 0, 0).getTime();
+
+        const actualizarContador = setInterval(function() {
+            const ahora = new Date().getTime();
+            const distancia = fechaEvento - ahora;
+
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            // Insertar el resultado en el HTML
+            document.getElementById("contador").innerHTML = dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+
+            // Cuando la cuenta regresiva termina
+            if (distancia < 0) {
+                clearInterval(actualizarContador);
+                document.getElementById("contador").innerHTML = "¡El evento ha comenzado!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
