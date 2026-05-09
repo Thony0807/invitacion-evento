@@ -12,7 +12,6 @@
             --celeste-claro: #e6f5fd;
             --texto-oscuro: #4a4a4a;
             --texto-claro: #7a7a7a;
-            --dorado: #d4af37; /* Toque elegante */
         }
         
         body {
@@ -21,13 +20,31 @@
             margin: 0;
             padding: 0;
             color: var(--texto-oscuro);
-            /* Fondo elegante fijo */
             background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)), 
                         url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Contenedor principal con efecto Cristal (Glassmorphism) */
+        /* Lienzo para las partículas en movimiento (fondo) */
+        #lienzo-particulas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none; /* Para que no interfiera con los clics */
+        }
+
+        /* Contenedor principal para que esté sobre las partículas */
+        .contenedor-principal {
+            position: relative;
+            z-index: 1;
+            padding-bottom: 50px;
+        }
+
+        /* Tarjetas de Cristal */
         .tarjeta-cristal {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
@@ -41,7 +58,6 @@
             width: 90%;
         }
 
-        /* Animaciones suaves al hacer scroll */
         .animar-scroll {
             opacity: 0;
             transform: translateY(40px);
@@ -52,7 +68,7 @@
             transform: translateY(0);
         }
 
-        /* Tipografías y Adornos */
+        /* Tipografías */
         .frase-inicial {
             font-family: 'Playfair Display', serif;
             font-style: italic;
@@ -77,7 +93,6 @@
             letter-spacing: 15px;
         }
 
-        /* Bloque de Nombres */
         .bloque-nombres { margin: 30px 0; }
         .titulo-nombres {
             font-family: 'Playfair Display', serif;
@@ -86,14 +101,9 @@
             margin-bottom: 5px;
             font-weight: 600;
         }
-        .nombres {
-            font-size: 1.05em;
-            font-weight: 400;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
+        .nombres { font-size: 1.05em; font-weight: 400; line-height: 1.6; margin-bottom: 25px; }
 
-        /* Cinta 15 Años */
+        /* Cinta y Fecha */
         .cinta-15 {
             background: linear-gradient(135deg, #4db8f0 0%, #87cefa 100%);
             color: white;
@@ -107,64 +117,43 @@
             border: 2px solid white;
         }
 
-        /* Fecha y Hora */
         .fecha-elegante {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin: 30px 0;
-            border-top: 1px solid var(--celeste-claro);
-            border-bottom: 1px solid var(--celeste-claro);
-            padding: 20px 0;
+            display: flex; justify-content: center; align-items: center; gap: 25px;
+            margin: 30px 0; border-top: 1px solid var(--celeste-claro);
+            border-bottom: 1px solid var(--celeste-claro); padding: 20px 0;
         }
         .dia-semana { font-family: 'Playfair Display', serif; font-size: 1.5em; color: var(--texto-claro); text-transform: uppercase; }
         .dia-numero { font-size: 4em; font-family: 'Playfair Display', serif; color: var(--celeste-principal); line-height: 0.8; }
-        .mes-anio { font-family: 'Montserrat', sans-serif; font-size: 1.2em; text-transform: uppercase; letter-spacing: 2px; text-align: left; color: var(--texto-oscuro); }
+        .mes-anio { font-family: 'Montserrat', sans-serif; font-size: 1.2em; text-transform: uppercase; text-align: left; }
         .hora { font-size: 1.3em; font-weight: 600; color: var(--texto-oscuro); margin-top: 15px; }
 
         /* Contador */
-        #contador {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-        }
+        #contador { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
         .time-box {
-            background: white;
-            padding: 15px 10px;
-            border-radius: 15px;
-            width: 70px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid var(--celeste-claro);
-            color: var(--celeste-principal);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8em;
-            font-weight: 600;
+            background: white; padding: 15px 10px; border-radius: 15px; width: 70px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid var(--celeste-claro);
+            color: var(--celeste-principal); font-family: 'Playfair Display', serif; font-size: 1.8em; font-weight: 600;
         }
         .time-box span {
-            display: block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.35em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--texto-claro);
-            font-weight: 400;
-            margin-top: 5px;
+            display: block; font-family: 'Montserrat', sans-serif; font-size: 0.35em;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--texto-claro); font-weight: 400; margin-top: 5px;
         }
 
-        /* Ubicaciones */
-        .lugar-titulo { 
-            font-family: 'Playfair Display', serif;
-            color: var(--celeste-principal); 
-            font-size: 1.5em; 
-            margin-bottom: 5px;
+        /* Ubicaciones e Iframes */
+        .lugar-titulo { font-family: 'Playfair Display', serif; color: var(--celeste-principal); font-size: 1.5em; margin-bottom: 5px; }
+        .ubicaciones { text-align: center; }
+        .mapa-frame {
+            width: 100%;
+            height: 250px;
+            border: 0;
+            border-radius: 12px;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .ubicaciones p { margin-bottom: 30px; font-weight: 300; }
 
         @media (max-width: 600px) {
             h1 { font-size: 4em; }
-            .tarjeta-cristal { padding: 40px 20px; margin: 20px auto; width: 85%; }
+            .tarjeta-cristal { padding: 40px 20px; width: 85%; }
             .fecha-elegante { gap: 15px; }
             .dia-numero { font-size: 3em; }
             .time-box { width: 60px; font-size: 1.5em; }
@@ -173,61 +162,73 @@
 </head>
 <body>
 
-    <!-- Tarjeta 1: Presentación -->
-    <div class="tarjeta-cristal animar-scroll">
-        <p class="frase-inicial">"Hay momentos inolvidables que se atesoran en el corazón para siempre. Por eso quiero compartir este día al lado de todas las personas que forman parte de mi vida."</p>
-        <div class="separador">❦ ❦ ❦</div>
-        <h1>Thamilee Summy</h1>
-    </div>
+    <!-- Lienzo animado de fondo -->
+    <canvas id="lienzo-particulas"></canvas>
 
-    <!-- Tarjeta 2: Padres y Padrinos -->
-    <div class="tarjeta-cristal animar-scroll">
-        <div class="bloque-nombres">
-            <div class="titulo-nombres">Mis Padres</div>
-            <div class="nombres">Arturo de Córdova Espinoza<br>Marisa León Espinoza</div>
+    <div class="contenedor-principal">
+        <!-- Tarjeta 1: Presentación -->
+        <div class="tarjeta-cristal animar-scroll">
+            <p class="frase-inicial">"Hay momentos inolvidables que se atesoran en el corazón para siempre. Por eso quiero compartir este día al lado de todas las personas que forman parte de mi vida."</p>
+            <div class="separador">❦ ❦ ❦</div>
+            <h1>Thamilee Summy</h1>
+        </div>
+
+        <!-- Tarjeta 2: Padres y Padrinos -->
+        <div class="tarjeta-cristal animar-scroll">
+            <div class="bloque-nombres">
+                <div class="titulo-nombres">Mis Padres</div>
+                <div class="nombres">Arturo de Córdova Espinoza<br>Marisa León Espinoza</div>
+                
+                <div class="separador" style="font-size: 1em;">✧</div>
+
+                <div class="titulo-nombres">Mis Padrinos</div>
+                <div class="nombres">Gemma Elena Ventura Cruz e hijo<br>Peter Phol Mendoza Venturo</div>
+            </div>
+            <p class="frase-inicial" style="font-size: 1.1em;">Los invitamos a ser cómplices del momento más especial y feliz para nosotros.</p>
+        </div>
+
+        <!-- Tarjeta 3: Fecha y Contador -->
+        <div class="tarjeta-cristal animar-scroll">
+            <div class="cinta-15">Mis 15 Años</div>
             
-            <div class="separador" style="font-size: 1em;">✧</div>
+            <div class="fecha-elegante">
+                <div class="dia-semana">Sábado</div>
+                <div class="dia-numero">23</div>
+                <div class="mes-anio">Mayo<br>2026</div>
+            </div>
+            <div class="hora">3:30 P.M.</div>
 
-            <div class="titulo-nombres">Mis Padrinos</div>
-            <div class="nombres">Gemma Elena Ventura Cruz e hijo<br>Peter Phol Mendoza Venturo</div>
+            <div id="contador">
+                <div class="time-box" id="dias">00 <span>Días</span></div>
+                <div class="time-box" id="horas">00 <span>Horas</span></div>
+                <div class="time-box" id="min">00 <span>Min</span></div>
+                <div class="time-box" id="seg">00 <span>Seg</span></div>
+            </div>
         </div>
-        <p class="frase-inicial" style="font-size: 1.1em;">Los invitamos a ser cómplices del momento más especial y feliz para nosotros.</p>
-    </div>
 
-    <!-- Tarjeta 3: Fecha y Contador -->
-    <div class="tarjeta-cristal animar-scroll">
-        <div class="cinta-15">Mis 15 Años</div>
-        
-        <div class="fecha-elegante">
-            <div class="dia-semana">Sábado</div>
-            <div class="dia-numero">23</div>
-            <div class="mes-anio">Mayo<br>2026</div>
+        <!-- Tarjeta 4: Misa -->
+        <div class="tarjeta-cristal animar-scroll">
+            <div class="ubicaciones">
+                <div class="lugar-titulo">Misa de Acción de Gracias</div>
+                <p>Iglesia Santiago Apóstol<br>Carhuamayo</p>
+                <!-- Mapa de la Iglesia -->
+                <iframe class="mapa-frame" src="https://maps.google.com/maps?q=-10.9222728,-76.0571446&t=m&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
-        <div class="hora">3:30 P.M.</div>
 
-        <div id="contador">
-            <div class="time-box" id="dias">00 <span>Días</span></div>
-            <div class="time-box" id="horas">00 <span>Horas</span></div>
-            <div class="time-box" id="min">00 <span>Min</span></div>
-            <div class="time-box" id="seg">00 <span>Seg</span></div>
-        </div>
-    </div>
-
-    <!-- Tarjeta 4: Recepción y Misa -->
-    <div class="tarjeta-cristal animar-scroll">
-        <div class="ubicaciones">
-            <div class="lugar-titulo">Misa de Acción de Gracias</div>
-            <p>Iglesia Santiago Apóstol<br>Carhuamayo</p>
-            
-            <div class="separador" style="font-size: 1em;">✧</div>
-
-            <div class="lugar-titulo">Recepción</div>
-            <p>Local Recepciones Ralusa Jr. Tarma s/n<br>Carhuamayo</p>
+        <!-- Tarjeta 5: Recepción -->
+        <div class="tarjeta-cristal animar-scroll">
+            <div class="ubicaciones">
+                <div class="lugar-titulo">Recepción</div>
+                <p>Local Recepciones Ralusa Jr. Tarma s/n<br>Carhuamayo</p>
+                <!-- Mapa del Local -->
+                <iframe class="mapa-frame" src="https://maps.google.com/maps?q=-10.92162,-76.059454&t=m&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
     </div>
 
     <script>
-        // Lógica del Contador
+        // --- 1. Lógica del Contador ---
         const fechaEvento = new Date(2026, 4, 23, 15, 30, 0).getTime();
 
         const actualizarContador = setInterval(function() {
@@ -250,7 +251,7 @@
             }
         }, 1000);
 
-        // Animación suave al hacer scroll
+        // --- 2. Animación suave al hacer scroll ---
         const observador = new IntersectionObserver((entradas) => {
             entradas.forEach(entrada => {
                 if (entrada.isIntersecting) {
@@ -261,6 +262,64 @@
 
         const elementosOcultos = document.querySelectorAll('.animar-scroll');
         elementosOcultos.forEach((el) => observador.observe(el));
+
+        // --- 3. Animación de Partículas (Estilo Luciérnagas Celestes) ---
+        const canvas = document.getElementById("lienzo-particulas");
+        const ctx = canvas.getContext("2d");
+        
+        let particulas = [];
+        const cantidadParticulas = 60; // Puedes subir o bajar este número
+
+        function redimensionarCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', redimensionarCanvas);
+        redimensionarCanvas();
+
+        class Particula {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.tamaño = Math.random() * 3 + 1; // Tamaño entre 1 y 4px
+                this.velocidadY = Math.random() * -1 - 0.5; // Flotan hacia arriba
+                this.velocidadX = Math.random() * 1 - 0.5; // Ligero movimiento lateral
+                this.opacidad = Math.random() * 0.5 + 0.2; // Transparencia variada
+            }
+            actualizar() {
+                this.x += this.velocidadX;
+                this.y += this.velocidadY;
+                // Si la partícula sale por arriba, reaparece abajo
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            dibujar() {
+                ctx.fillStyle = `rgba(77, 184, 240, ${this.opacidad})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.tamaño, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function iniciarParticulas() {
+            for (let i = 0; i < cantidadParticulas; i++) {
+                particulas.push(new Particula());
+            }
+        }
+
+        function animarParticulas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particulas.length; i++) {
+                particulas[i].actualizar();
+                particulas[i].dibujar();
+            }
+            requestAnimationFrame(animarParticulas);
+        }
+
+        iniciarParticulas();
+        animarParticulas();
     </script>
 </body>
 </html>
