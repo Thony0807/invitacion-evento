@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis 15 Años - Thamilee Summy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Fuentes premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --celeste: #4db8f0; /* Color celeste extraído de tu imagen */
-            --gris-texto: #555555;
+            --celeste-principal: #4db8f0;
+            --celeste-claro: #e6f5fd;
+            --texto-oscuro: #4a4a4a;
+            --texto-claro: #7a7a7a;
+            --dorado: #d4af37; /* Toque elegante */
         }
         
         body {
@@ -16,77 +20,108 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
-            color: var(--gris-texto);
+            color: var(--texto-oscuro);
+            /* Fondo elegante fijo */
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.8)), 
+                        url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
             overflow-x: hidden;
         }
 
-        /* Clase para las animaciones al hacer scroll */
+        /* Contenedor principal con efecto Cristal (Glassmorphism) */
+        .tarjeta-cristal {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            margin: 40px auto;
+            max-width: 700px;
+            padding: 50px 30px;
+            width: 90%;
+        }
+
+        /* Animaciones suaves al hacer scroll */
         .animar-scroll {
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .animar-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .seccion {
-            padding: 50px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        /* Tipografías y Adornos */
         .frase-inicial {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
             font-style: italic;
+            font-size: 1.2em;
+            color: var(--texto-claro);
+            line-height: 1.8;
+            margin-bottom: 20px;
         }
 
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 5em;
-            color: var(--celeste);
-            margin: 10px 0;
-            font-weight: normal;
+            font-size: 5.5em;
+            color: var(--celeste-principal);
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(77, 184, 240, 0.2);
         }
 
-        .nombres-bloque {
-            margin: 30px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .separador {
+            font-size: 1.5em;
+            color: var(--celeste-principal);
+            margin: 20px 0;
+            letter-spacing: 15px;
         }
 
-        .nombres-bloque p { margin: 5px 0; }
-        .etiqueta { font-weight: 600; color: var(--gris-texto); }
-        .nombre-persona { color: var(--gris-texto); }
+        /* Bloque de Nombres */
+        .bloque-nombres { margin: 30px 0; }
+        .titulo-nombres {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1em;
+            color: var(--celeste-principal);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .nombres {
+            font-size: 1.05em;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
 
+        /* Cinta 15 Años */
         .cinta-15 {
-            background-color: var(--celeste);
+            background: linear-gradient(135deg, #4db8f0 0%, #87cefa 100%);
             color: white;
             font-family: 'Great Vibes', cursive;
-            font-size: 3em;
-            padding: 10px 40px;
+            font-size: 3.5em;
+            padding: 10px 50px;
+            border-radius: 50px;
             display: inline-block;
             margin: 30px 0;
-            position: relative;
+            box-shadow: 0 10px 20px rgba(77, 184, 240, 0.3);
+            border: 2px solid white;
         }
 
-        .fecha-bloque {
+        /* Fecha y Hora */
+        .fecha-elegante {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            font-size: 1.5em;
-            color: var(--celeste);
-            font-weight: 600;
-            margin-bottom: 30px;
+            gap: 25px;
+            margin: 30px 0;
+            border-top: 1px solid var(--celeste-claro);
+            border-bottom: 1px solid var(--celeste-claro);
+            padding: 20px 0;
         }
-        .numero-dia { font-size: 2.5em; line-height: 1; }
-        .mes-anio { text-align: left; font-size: 0.6em; }
+        .dia-semana { font-family: 'Playfair Display', serif; font-size: 1.5em; color: var(--texto-claro); text-transform: uppercase; }
+        .dia-numero { font-size: 4em; font-family: 'Playfair Display', serif; color: var(--celeste-principal); line-height: 0.8; }
+        .mes-anio { font-family: 'Montserrat', sans-serif; font-size: 1.2em; text-transform: uppercase; letter-spacing: 2px; text-align: left; color: var(--texto-oscuro); }
+        .hora { font-size: 1.3em; font-weight: 600; color: var(--texto-oscuro); margin-top: 15px; }
 
         /* Contador */
         #contador {
@@ -94,73 +129,82 @@
             justify-content: center;
             gap: 15px;
             margin: 30px 0;
-            flex-wrap: wrap;
         }
         .time-box {
-            background: #f0f9ff;
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px solid var(--celeste);
-            min-width: 60px;
-            color: var(--celeste);
-            font-weight: bold;
-            font-size: 1.5em;
+            background: white;
+            padding: 15px 10px;
+            border-radius: 15px;
+            width: 70px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--celeste-claro);
+            color: var(--celeste-principal);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 600;
         }
         .time-box span {
             display: block;
-            font-size: 0.4em;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.35em;
             text-transform: uppercase;
-            color: var(--gris-texto);
+            letter-spacing: 1px;
+            color: var(--texto-claro);
+            font-weight: 400;
             margin-top: 5px;
         }
 
-        .ubicaciones {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            margin-top: 40px;
+        /* Ubicaciones */
+        .lugar-titulo { 
+            font-family: 'Playfair Display', serif;
+            color: var(--celeste-principal); 
+            font-size: 1.5em; 
+            margin-bottom: 5px;
         }
-        .lugar-titulo { color: var(--celeste); font-weight: bold; font-size: 1.3em; margin-bottom: 10px;}
+        .ubicaciones p { margin-bottom: 30px; font-weight: 300; }
 
         @media (max-width: 600px) {
-            h1 { font-size: 3.8em; }
-            .fecha-bloque { flex-direction: column; gap: 5px; }
-            .mes-anio { text-align: center; }
+            h1 { font-size: 4em; }
+            .tarjeta-cristal { padding: 40px 20px; margin: 20px auto; width: 85%; }
+            .fecha-elegante { gap: 15px; }
+            .dia-numero { font-size: 3em; }
+            .time-box { width: 60px; font-size: 1.5em; }
         }
     </style>
 </head>
 <body>
 
-    <div class="seccion animar-scroll">
-        <p class="frase-inicial">Hay momentos inolvidables que se atesoran en el corazón para siempre. Por eso quiero compartir este día al lado de todas las personas que forman parte de mi vida.</p>
+    <!-- Tarjeta 1: Presentación -->
+    <div class="tarjeta-cristal animar-scroll">
+        <p class="frase-inicial">"Hay momentos inolvidables que se atesoran en el corazón para siempre. Por eso quiero compartir este día al lado de todas las personas que forman parte de mi vida."</p>
+        <div class="separador">❦ ❦ ❦</div>
         <h1>Thamilee Summy</h1>
     </div>
 
-    <div class="seccion animar-scroll">
-        <div class="nombres-bloque">
-            <div>
-                <span class="etiqueta">Mis Padres:</span><br>
-                <span class="nombre-persona">Arturo de Córdova Espinoza<br>Marisa León Espinoza</span>
-            </div>
-            <div>
-                <span class="etiqueta">Mis Padrinos:</span><br>
-                <span class="nombre-persona">Gemma Elena Ventura Cruz e hijo<br>Peter Phol Mendoza Venturo</span>
-            </div>
+    <!-- Tarjeta 2: Padres y Padrinos -->
+    <div class="tarjeta-cristal animar-scroll">
+        <div class="bloque-nombres">
+            <div class="titulo-nombres">Mis Padres</div>
+            <div class="nombres">Arturo de Córdova Espinoza<br>Marisa León Espinoza</div>
+            
+            <div class="separador" style="font-size: 1em;">✧</div>
+
+            <div class="titulo-nombres">Mis Padrinos</div>
+            <div class="nombres">Gemma Elena Ventura Cruz e hijo<br>Peter Phol Mendoza Venturo</div>
         </div>
-        <p style="font-style: italic; margin-top: 30px;">Los invitamos a ser cómplices del momento más especial y feliz para nosotros.</p>
+        <p class="frase-inicial" style="font-size: 1.1em;">Los invitamos a ser cómplices del momento más especial y feliz para nosotros.</p>
     </div>
 
-    <div class="seccion animar-scroll">
+    <!-- Tarjeta 3: Fecha y Contador -->
+    <div class="tarjeta-cristal animar-scroll">
         <div class="cinta-15">Mis 15 Años</div>
         
-        <div class="fecha-bloque">
-            <div>Sábado</div>
-            <div class="numero-dia">23</div>
+        <div class="fecha-elegante">
+            <div class="dia-semana">Sábado</div>
+            <div class="dia-numero">23</div>
             <div class="mes-anio">Mayo<br>2026</div>
         </div>
-        <p style="font-weight: bold; color: var(--gris-texto);">3:30 P.M.</p>
+        <div class="hora">3:30 P.M.</div>
 
-        <!-- Contador configurado para el 23 de Mayo de 2026 a las 15:30 -->
         <div id="contador">
             <div class="time-box" id="dias">00 <span>Días</span></div>
             <div class="time-box" id="horas">00 <span>Horas</span></div>
@@ -169,22 +213,21 @@
         </div>
     </div>
 
-    <div class="seccion animar-scroll">
+    <!-- Tarjeta 4: Recepción y Misa -->
+    <div class="tarjeta-cristal animar-scroll">
         <div class="ubicaciones">
-            <div>
-                <div class="lugar-titulo">MISA</div>
-                <p>Iglesia Santiago Apóstol<br>Carhuamayo</p>
-            </div>
-            <div>
-                <div class="lugar-titulo">RECEPCIÓN</div>
-                <p>Local Recepciones Ralusa Jr. Tarma s/n<br>Carhuamayo</p>
-            </div>
+            <div class="lugar-titulo">Misa de Acción de Gracias</div>
+            <p>Iglesia Santiago Apóstol<br>Carhuamayo</p>
+            
+            <div class="separador" style="font-size: 1em;">✧</div>
+
+            <div class="lugar-titulo">Recepción</div>
+            <p>Local Recepciones Ralusa Jr. Tarma s/n<br>Carhuamayo</p>
         </div>
     </div>
 
     <script>
-        /* 1. Lógica del Contador */
-        // Fecha: 2026, Mes 4 (Mayo es el mes 4 porque Enero es 0), Día 23, Hora 15:30
+        // Lógica del Contador
         const fechaEvento = new Date(2026, 4, 23, 15, 30, 0).getTime();
 
         const actualizarContador = setInterval(function() {
@@ -203,18 +246,18 @@
 
             if (distancia < 0) {
                 clearInterval(actualizarContador);
-                document.getElementById("contador").innerHTML = "<p style='color:var(--celeste); font-weight:bold;'>¡La celebración ha comenzado!</p>";
+                document.getElementById("contador").innerHTML = "<p style='color:var(--celeste-principal); font-family: Playfair Display; font-size: 1.5em; font-weight:bold;'>¡La celebración ha comenzado!</p>";
             }
         }, 1000);
 
-        /* 2. Lógica de las Animaciones al hacer Scroll */
+        // Animación suave al hacer scroll
         const observador = new IntersectionObserver((entradas) => {
             entradas.forEach(entrada => {
                 if (entrada.isIntersecting) {
                     entrada.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 }); // Se activa cuando el 10% del elemento es visible
+        }, { threshold: 0.15 }); 
 
         const elementosOcultos = document.querySelectorAll('.animar-scroll');
         elementosOcultos.forEach((el) => observador.observe(el));
