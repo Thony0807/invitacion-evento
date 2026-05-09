@@ -3,34 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Invitación Especial</title>
+    <title>Nuestra Boda</title>
+    <!-- Importando fuentes elegantes de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        /* Estilos básicos para que sea legible, luego podemos mejorarlos */
-        body { font-family: sans-serif; text-align: center; padding: 20px; background-color: #f9f9f9;}
-        #contador { font-size: 2.5em; font-weight: bold; margin: 20px 0; color: #2c3e50; }
-        .mapa-container { margin-top: 40px; }
+        body {
+            font-family: 'Lora', serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #faf8f5; /* Tono cálido/crema de boda */
+            color: #4a4a4a;
+        }
+        .hero {
+            padding: 80px 20px;
+            /* Imagen de fondo sutil con una capa blanca semitransparente encima */
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') center/cover;
+            border-bottom: 2px solid #e0d5c1;
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5em;
+            color: #cda34f; /* Tono dorado elegante */
+            margin: 10px 0;
+        }
+        h2 {
+            font-size: 2em;
+            color: #cda34f;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        /* Contenedor Flexbox para que el contador se adapte a móviles */
+        #contador {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.5em;
+            margin: 30px 0;
+            flex-wrap: wrap; /* Permite que las cajas bajen de línea si no caben */
+        }
+        .time-box {
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e0d5c1;
+            min-width: 70px;
+        }
+        .time-box span {
+            display: block;
+            font-size: 0.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .seccion {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Contenedor Responsivo para el Mapa de Google */
+        .mapa-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* Proporción 16:9 */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .mapa-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Ajustes específicos para pantallas de celular */
+        @media (max-width: 600px) {
+            h1 { font-size: 3.5em; }
+            .hero { padding: 50px 20px; }
+            #contador { font-size: 1.2em; gap: 10px; }
+            .time-box { padding: 10px 15px; min-width: 50px; }
+        }
     </style>
 </head>
 <body>
 
-    <h1>¡Estás Invitado!</h1>
-    <p>Acompáñanos a celebrar este momento tan especial.</p>
+    <div class="hero">
+        <h1>María & Juan</h1>
+        <p>¡Nos casamos y queremos celebrar este momento contigo!</p>
+    </div>
 
-    <!-- Sección de la Cuenta Regresiva -->
-    <div id="contador">Calculando tiempo...</div>
+    <div class="seccion">
+        <h2>Faltan</h2>
+        <div id="contador">
+            <div class="time-box" id="dias">00 <span>Días</span></div>
+            <div class="time-box" id="horas">00 <span>Horas</span></div>
+            <div class="time-box" id="min">00 <span>Min</span></div>
+            <div class="time-box" id="seg">00 <span>Seg</span></div>
+        </div>
+    </div>
 
-    <!-- Sección de la Ubicación (Google Maps) -->
-    <div class="mapa-container">
-        <h2>Ubicación</h2>
-        <p>Te esperamos en el lugar del evento.</p>
-        <!-- Iframe de Google Maps (Reemplazarás el src más adelante con tu ubicación) -->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.815217154331!2d-77.0366657!3d-12.0560731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAzJzIxLjkiUyA3N8KwMDInMTIuMCJX!5e0!3m2!1ses!2spe!4v1633023226784!5m2!1ses!2spe" width="100%" height="350" style="border:0; max-width: 600px;" allowfullscreen="" loading="lazy"></iframe>
+    <div class="seccion">
+        <h2>Nuestra Ubicación</h2>
+        <p>Te esperamos con mucha emoción en el lugar de la recepción.</p>
+        <div class="mapa-container">
+            <!-- He mantenido exactamente el mismo enlace de tu mapa de Lima -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.815217154331!2d-77.0366657!3d-12.0560731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAzJzIxLjkiUyA3N8KwMDInMTIuMCJX!5e0!3m2!1ses!2spe!4v1633023226784!5m2!1ses!2spe" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </div>
 
     <script>
-        /* Lógica de la Cuenta Regresiva */
-        // Configura la fecha aquí: Año, Mes (0-11, 0 es Enero), Día, Hora, Minuto
-        // Ejemplo actual: 31 de Diciembre de 2026 a las 20:00 horas
+        // Configuración de la fecha (Año, Mes [0=Enero, 11=Diciembre], Día, Hora, Minuto)
         const fechaEvento = new Date(2026, 11, 31, 20, 0, 0).getTime();
 
         const actualizarContador = setInterval(function() {
@@ -42,13 +136,14 @@
             const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
             const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
-            // Insertar el resultado en el HTML
-            document.getElementById("contador").innerHTML = dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+            document.getElementById("dias").innerHTML = dias + " <span>Días</span>";
+            document.getElementById("horas").innerHTML = horas + " <span>Horas</span>";
+            document.getElementById("min").innerHTML = minutos + " <span>Min</span>";
+            document.getElementById("seg").innerHTML = segundos + " <span>Seg</span>";
 
-            // Cuando la cuenta regresiva termina
             if (distancia < 0) {
                 clearInterval(actualizarContador);
-                document.getElementById("contador").innerHTML = "¡El evento ha comenzado!";
+                document.getElementById("contador").innerHTML = "<p>¡El gran día ha llegado!</p>";
             }
         }, 1000);
     </script>
