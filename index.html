@@ -140,7 +140,7 @@
         }
 
         /* Ubicaciones e Iframes */
-        .lugar-titulo { font-family: 'Playfair Display', serif; color: var(--celeste-principal); font-size: 1.5em; margin-bottom: 5px; }
+        .lugar-titulo { font-family: 'Playfair Display', serif; color: var(--celeste-principal); font-size: 1.5em; margin-bottom: 5px; text-transform: uppercase; }
         .ubicaciones { text-align: center; }
         .mapa-frame {
             width: 100%;
@@ -209,7 +209,7 @@
         <!-- Tarjeta 4: Misa -->
         <div class="tarjeta-cristal animar-scroll">
             <div class="ubicaciones">
-                <div class="lugar-titulo">Misa de Acción de Gracias</div>
+                <div class="lugar-titulo">MISA</div>
                 <p>Iglesia Santiago Apóstol<br>Carhuamayo</p>
                 <!-- Mapa de la Iglesia -->
                 <iframe class="mapa-frame" src="https://maps.google.com/maps?q=-10.9222728,-76.0571446&t=m&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
@@ -219,7 +219,7 @@
         <!-- Tarjeta 5: Recepción -->
         <div class="tarjeta-cristal animar-scroll">
             <div class="ubicaciones">
-                <div class="lugar-titulo">Recepción</div>
+                <div class="lugar-titulo">RECEPCIÓN</div>
                 <p>Local Recepciones Ralusa Jr. Tarma s/n<br>Carhuamayo</p>
                 <!-- Mapa del Local -->
                 <iframe class="mapa-frame" src="https://maps.google.com/maps?q=-10.92162,-76.059454&t=m&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
@@ -268,7 +268,7 @@
         const ctx = canvas.getContext("2d");
         
         let particulas = [];
-        const cantidadParticulas = 60; // Puedes subir o bajar este número
+        const cantidadParticulas = 60;
 
         function redimensionarCanvas() {
             canvas.width = window.innerWidth;
@@ -281,15 +281,14 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.tamaño = Math.random() * 3 + 1; // Tamaño entre 1 y 4px
-                this.velocidadY = Math.random() * -1 - 0.5; // Flotan hacia arriba
-                this.velocidadX = Math.random() * 1 - 0.5; // Ligero movimiento lateral
-                this.opacidad = Math.random() * 0.5 + 0.2; // Transparencia variada
+                this.tamaño = Math.random() * 3 + 1; 
+                this.velocidadY = Math.random() * -1 - 0.5; 
+                this.velocidadX = Math.random() * 1 - 0.5; 
+                this.opacidad = Math.random() * 0.5 + 0.2; 
             }
             actualizar() {
                 this.x += this.velocidadX;
                 this.y += this.velocidadY;
-                // Si la partícula sale por arriba, reaparece abajo
                 if (this.y < 0) {
                     this.y = canvas.height;
                     this.x = Math.random() * canvas.width;
